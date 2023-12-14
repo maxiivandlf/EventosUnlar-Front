@@ -1,0 +1,62 @@
+.landingContainer {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  height: 100%;
+  display: flex;
+  background-image: url(../../assets/unlar.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  border-radius: 90px;
+}
+
+.blur {
+  background: linear-gradient(#e66465, #9198e5);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  border-radius: 30px;
+}
+.image {
+  aspect-ratio: 1/1;
+  margin: 20px;
+  border-radius: 30px;
+}
+.contentText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.contentText h3 {
+  color: var(--secondary);
+  font-weight: 500;
+}
+.contentText p {
+  color: var(--secondary);
+}
+.contentText button {
+  background-color: var(--primary);
+  border: none;
+  padding: 20px 50px;
+  border-radius: 20px;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.contentText button:hover {
+  background-color: var(--secondary);
+}

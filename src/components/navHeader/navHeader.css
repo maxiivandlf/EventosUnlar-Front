@@ -1,0 +1,25 @@
+.navContainer {
+  display: 'flex';
+  width: 100%;
+  justify-content: center;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  list-style: none;
+  gap: 20px;
+}
+.link {
+  text-decoration: none;
+  color: var(--primary);
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+.link:hover {
+  background-color: var(--primary);
+  color: var(--white);
+}
