@@ -16,7 +16,7 @@ function NavHeader() {
         </li>
         <li>
           <Link className='link' to={'/Map'}>
-            Mapa
+            Mapa UNLaR
           </Link>
         </li>
       </ul>

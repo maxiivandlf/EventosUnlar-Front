@@ -5,7 +5,7 @@
   flex-direction: column;
 }
 
-.content {
+.banner {
   height: 100%;
   display: flex;
   background-image: url(../../assets/unlar.jpeg);
@@ -15,18 +15,22 @@
   position: relative;
   justify-content: center;
   align-items: center;
-  border-radius: 90px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
 }
 
 .blur {
-  background: linear-gradient(#e66465, #9198e5);
+  background: linear-gradient(#e66464a1, #9198e571);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
-  border-radius: 30px;
+
+  align-items: center;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
 }
 .image {
   aspect-ratio: 1/1;
@@ -40,12 +44,18 @@
   align-items: center;
   width: 100%;
 }
-.contentText h3 {
+.contentText h2 {
   color: var(--secondary);
   font-weight: 500;
+  font-size: 2rem;
+  text-wrap: balance;
+  text-align: center;
 }
 .contentText p {
   color: var(--secondary);
+  text-wrap: balance;
+  font-size: large;
+  text-align: center;
 }
 .contentText button {
   background-color: var(--primary);
@@ -59,4 +69,36 @@
 }
 .contentText button:hover {
   background-color: var(--secondary);
+}
+
+.containerCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.uncomingEvents {
+  background-color: rgb(39, 36, 51);
+}
+
+@media (width <= 769px) {
+  .containerCards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .blur {
+    flex-direction: column;
+  }
+  .image {
+    width: min-content;
+  }
+}
+
+@media (width <= 400px) {
+  .containerCards {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .image {
+    width: 300px;
+  }
 }

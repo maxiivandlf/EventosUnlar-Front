@@ -16,7 +16,7 @@
   color: var(--primary);
   padding: 10px 20px;
   border-radius: 20px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .link:hover {

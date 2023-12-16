@@ -10,6 +10,7 @@ function Header() {
         alignItems: 'center',
         justifyContent: 'space-between',
         borderBottom: '1px solid #FF8C00',
+        marginBottom: '20px',
       }}
     >
       <img

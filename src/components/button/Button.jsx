@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './button.css';
+import './button.module.css';
 
 function Button(props) {
   const { title, action, to, type, width, height } = props;
