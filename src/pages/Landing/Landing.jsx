@@ -2,9 +2,11 @@ import { Header, Button } from '../../components';
 import styles from './Landing.module.css';
 import encuentro from '../../assets/encuentro_informatico.jpg';
 import CardEvent from '../../components/CardEvent';
+import getEvents from '../../services/getEvents';
 
 const handleClick = () => {
   console.log('Ver mas detalles del evento');
+  getEvents();
 };
 
 function Landing() {

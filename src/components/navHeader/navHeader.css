@@ -6,10 +6,12 @@
 
 .navList {
   display: flex;
+  max-width: 600px;
   align-items: center;
   justify-content: flex-end;
   list-style: none;
   gap: 20px;
+  padding: 0;
 }
 .link {
   text-decoration: none;
@@ -19,7 +21,8 @@
   font-weight: 500;
 }
 
-.link:hover {
+.link:hover,
+.link:focus {
   background-color: var(--primary);
   color: var(--white);
 }

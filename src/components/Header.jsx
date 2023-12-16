@@ -19,7 +19,7 @@ function Header() {
         src='/logo.png'
         alt='Logo'
       />
-      <h1 style={{ width: '100%', color: 'white' }}>
+      <h1 style={{ color: 'white' }}>
         <span style={{ color: '#FF8C00' }}>Eventos</span>
         <span style={{ color: '#00BFFF' }}>.</span>
       </h1>
