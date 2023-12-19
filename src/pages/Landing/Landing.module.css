@@ -33,8 +33,7 @@
   border-top-right-radius: 30px;
 }
 .image {
-  height: 90%;
-
+  width: 50vw;
   aspect-ratio: 1/1;
   margin: 20px;
   border-radius: 30px;
@@ -82,6 +81,10 @@
 
 .uncomingEvents {
   background-color: rgb(39, 36, 51);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (width <= 769px) {
@@ -92,15 +95,12 @@
     flex-direction: column;
   }
   .image {
-    width: min-content;
+    width: 80vw;
   }
 }
 
 @media (width <= 400px) {
   .containerCards {
     grid-template-columns: repeat(1, 1fr);
-  }
-  .image {
-    width: 300px;
   }
 }

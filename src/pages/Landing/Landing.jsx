@@ -1,15 +1,30 @@
+import { useEffect, useState } from 'react';
 import { Header, Button } from '../../components';
 import styles from './Landing.module.css';
 import encuentro from '../../assets/encuentro_informatico.jpg';
 import CardEvent from '../../components/CardEvent';
-import getEvents from '../../services/getEvents';
+import * as getEventsThunk from '../../redux/thunks/thunks';
+import { useDispatch, useSelector } from 'react-redux';
+import { Skeleton, Pagination, Grid } from '@mui/material';
 
 const handleClick = () => {
   console.log('Ver mas detalles del evento');
-  getEvents();
 };
 
 function Landing() {
+  const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
+
+  const { isLoading, events, totalPages } = useSelector(
+    (state) => state.events
+  );
+  const handleChangePage = (event, value) => {
+    setPage(value);
+    dispatch(getEventsThunk.getEvents(value, 2));
+  };
+  useEffect(() => {
+    dispatch(getEventsThunk.getEvents(1, 2));
+  }, [dispatch]);
   return (
     <div className={styles.landingContainer}>
       <Header />
@@ -34,27 +49,34 @@ function Landing() {
         </div>
       </section>
       <section className={styles.uncomingEvents}>
-        <h2 style={{ paddingLeft: '100px', color: 'white' }}>
-          Proximos eventos
-        </h2>
-        <div className={styles.containerCards}>
-          <CardEvent
-            imageURl={encuentro}
-            title={'Encuentro Informático Riojano'}
-            description={
-              'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum minima porro ut a ex et asperiores amet, quisquam veniam ea?'
-            }
-          />
-
-          <CardEvent imageURl={encuentro} />
-          <CardEvent imageURl={encuentro} />
-          <CardEvent imageURl={encuentro} />
-          <CardEvent imageURl={encuentro} />
-          <CardEvent imageURl={encuentro} />
-          <CardEvent imageURl={encuentro} />
-          <CardEvent imageURl={encuentro} />
-          <CardEvent imageURl={encuentro} />
-        </div>
+        <h2 style={{ color: 'white' }}>Proximos eventos</h2>
+        <Grid container gap={3} alignItems={'center'} justifyContent={'center'}>
+          {isLoading ? (
+            <Grid item xs={6} md={4}>
+              <Skeleton variant='text' sx={{ fontSize: '1rem' }} />
+              <Skeleton variant='circular' width={40} height={40} />
+              <Skeleton variant='rectangular' width={210} height={60} />
+              <Skeleton variant='rounded' width={210} height={60} />
+            </Grid>
+          ) : (
+            events.map((event) => (
+              <Grid key={event._id} item xs={6} md={4}>
+                <CardEvent
+                  description={event.description}
+                  title={event.name}
+                  imageURl={encuentro}
+                />
+              </Grid>
+            ))
+          )}
+        </Grid>
+        <Pagination
+          count={totalPages}
+          color='secondary'
+          sx={{ borderRadius: '50px' }}
+          page={page}
+          onChange={handleChangePage}
+        />
       </section>
     </div>
   );
