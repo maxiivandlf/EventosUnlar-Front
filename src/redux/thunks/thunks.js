@@ -1,10 +1,10 @@
 import { events } from '../slices';
-import getEventsApi from '../../api/getEvents';
+import apiEvents from '../../api/apiEvents';
 
 export const getEvents = (page, limit) => {
   return async (dispatch, getState) => {
     dispatch(events.startLoadingEvents());
-    const response = await getEventsApi(page, limit);
+    const response = await apiEvents(page, limit);
     dispatch(
       events.setEvents({
         events: response.events,
