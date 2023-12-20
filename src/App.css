@@ -16,3 +16,20 @@ body {
   width: 90vw;
   height: 70vh;
 }
+
+.logo {
+  width: 50px;
+}
+.nav-button {
+  padding: 10px 30px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.is-active {
+  pointer-events: none;
+  background-color: var(--primary);
+}
+.is-active p {
+  color: var(--white);
+}
