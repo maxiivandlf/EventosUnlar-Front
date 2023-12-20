@@ -2,7 +2,7 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Landing from './pages/Landing/Landing';
 import Map from './pages/Map/Map';
-import Events from './pages/events/events';
+import Events from './pages/events/Events';
 import Page404 from './pages/404/404';
 
 function App() {
