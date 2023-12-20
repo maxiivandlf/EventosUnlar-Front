@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Header, Button } from '../../components';
 import styles from './Landing.module.css';
 import encuentro from '../../assets/encuentro_informatico.jpg';
-import CardEvent from '../../components/CardEvent';
+import MediaCard from '../../components/CardEvent';
 import * as getEventsThunk from '../../redux/thunks/thunks';
 import { useDispatch, useSelector } from 'react-redux';
 import { Skeleton, Pagination, Grid } from '@mui/material';
@@ -61,10 +61,11 @@ function Landing() {
           ) : (
             events.map((event) => (
               <Grid key={event._id} item xs={6} md={4}>
-                <CardEvent
+                <MediaCard
                   description={event.description}
                   title={event.name}
                   imageURl={encuentro}
+                  idEvent={event._id}
                 />
               </Grid>
             ))

@@ -10,7 +10,7 @@ function NavHeader() {
           </Link>
         </li>
         <li>
-          <Link className='link' to={'/Eventos'}>
+          <Link className='link' to={'/eventos'}>
             Eventos
           </Link>
         </li>
