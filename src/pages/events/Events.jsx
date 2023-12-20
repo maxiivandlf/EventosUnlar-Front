@@ -1,4 +1,4 @@
-import { Header, MediaCard } from '../../components';
+import { MediaCard, Header } from '../../components';
 import { Grid, Box, CircularProgress, Typography } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import * as getEventsThunk from '../../redux/thunks/thunks';
@@ -14,7 +14,6 @@ function Events() {
   return (
     <div>
       <Header />
-
       <Typography
         variant='h4'
         align='center'
