@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 
 export default function MediaCard({
   idEvent,
-  imageURl,
+  imageURL,
   title,
   description,
   dateValue,
@@ -22,7 +22,7 @@ export default function MediaCard({
 
   return (
     <Card sx={{ maxWidth: 345, borderRadius: 6, padding: 2 }}>
-      <CardMedia sx={{ height: 140 }} image={imageURl} title='green iguana' />
+      <CardMedia sx={{ height: 140 }} image={imageURL} title='green iguana' />
 
       <CardContent
         sx={{

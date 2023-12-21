@@ -66,9 +66,9 @@ function Landing() {
                 <MediaCard
                   description={event.description}
                   title={event.name}
-                  imageURl={event.imageURL || '/default.jpg'}
+                  imageURL={event.imageURL || '/default.jpg'}
                   idEvent={event._id}
-                  dateValue={event.date}
+                  dateValue={event.dateEvent}
                 />
               </Grid>
             ))
