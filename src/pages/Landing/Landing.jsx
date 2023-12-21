@@ -49,14 +49,20 @@ function Landing() {
       </section>
       <section className={styles.uncomingEvents}>
         <h2 style={{ color: 'white' }}>Proximos eventos</h2>
-        <Grid container gap={3} alignItems={'center'} justifyContent={'center'}>
+        <Grid
+          container
+          gap={3}
+          alignItems={'center'}
+          justifyContent={'center'}
+          margin={3}
+        >
           {isLoading ? (
             <Box sx={{ display: 'flex' }}>
               <CircularProgress />
             </Box>
           ) : (
             events.map((event) => (
-              <Grid key={event._id} item xs={6} md={4}>
+              <Grid key={event._id} item md={4} marginX={2}>
                 <MediaCard
                   description={event.description}
                   title={event.name}
@@ -71,7 +77,7 @@ function Landing() {
         <Pagination
           count={totalPages}
           color='secondary'
-          sx={{ borderRadius: '50px' }}
+          sx={{ borderRadius: '50px', margin: 2 }}
           page={page}
           onChange={handleChangePage}
         />
