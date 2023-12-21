@@ -20,6 +20,17 @@ body {
 .logo {
   width: 50px;
 }
+.primary-btn {
+  padding: 10px 30px;
+  background-color: var(--primary);
+  color: var(--white);
+  border-radius: 20px;
+}
+
+.primary-btn:hover {
+  background-color: var(--secondary);
+}
+
 .nav-button {
   padding: 10px 30px;
   border-radius: 20px;

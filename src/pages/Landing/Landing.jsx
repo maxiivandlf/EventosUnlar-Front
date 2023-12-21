@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Header, Button } from '../../components';
+import { Header, Button, MediaCard } from '../../components';
 import styles from './Landing.module.css';
 import encuentro from '../../assets/encuentro_informatico.jpg';
-import MediaCard from '../../components/CardEvent';
 import * as getEventsThunk from '../../redux/thunks/thunks';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, CircularProgress, Pagination, Grid } from '@mui/material';
@@ -63,6 +62,7 @@ function Landing() {
                   title={event.name}
                   imageURl={event.imageURL || '/default.jpg'}
                   idEvent={event._id}
+                  dateValue={event.date}
                 />
               </Grid>
             ))
