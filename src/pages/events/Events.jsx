@@ -38,6 +38,7 @@ function Events() {
                 title={event.name}
                 idEvent={event._id}
                 imageURl={event.imageURL || '/public/default.jpg'}
+                dateValue={event.date}
               />
             </Grid>
           ))
