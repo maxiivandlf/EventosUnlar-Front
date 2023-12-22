@@ -1,5 +1,4 @@
 .landingContainer {
-  height: 90vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -72,13 +71,6 @@
   background-color: var(--secondary);
 }
 
-.containerCards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 20px;
-}
-
 .uncomingEvents {
   background-color: rgb(39, 36, 51);
   display: flex;
@@ -88,19 +80,10 @@
 }
 
 @media (width <= 769px) {
-  .containerCards {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .blur {
     flex-direction: column;
   }
   .image {
     width: 80vw;
-  }
-}
-
-@media (width <= 400px) {
-  .containerCards {
-    grid-template-columns: repeat(1, 1fr);
   }
 }
