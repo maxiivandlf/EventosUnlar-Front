@@ -6,15 +6,15 @@
   font-family: Roboto, 'Times New Roman', Times, serif;
 }
 body {
-  background-color: #1e1e1e;
+  background-color: var(--color-surface-200);
   text-decoration: none;
   list-style: none;
   padding: 0;
 }
 
 .leaflet-container {
-  width: 90vw;
-  height: 70vh;
+  width: 90%;
+  height: 70%;
 }
 
 .logo {
@@ -22,7 +22,7 @@ body {
 }
 .primary-btn {
   padding: 10px 30px;
-  background-color: var(--primary);
+  background-color: var(--color-primary-100);
   color: var(--white);
   border-radius: 20px;
 }
@@ -39,7 +39,7 @@ body {
 
 .is-active {
   pointer-events: none;
-  background-color: var(--primary);
+  background-color: var(--color-primary-100);
 }
 .is-active p {
   color: var(--white);
