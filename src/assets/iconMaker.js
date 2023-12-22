@@ -1,4 +1,4 @@
-import iconMarker from '/public/logo.svg';
+import iconMarker from '/logo.svg';
 import L from 'leaflet';
 
 const iconMaker = L.icon({

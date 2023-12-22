@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Header, Button, MediaCard, Footer } from '../../components';
+import { Header, ButtonComponent, MediaCard, Footer } from '../../components';
 import styles from './Landing.module.css';
 import encuentro from '../../assets/encuentro_informatico.jpg';
 import * as getEventsThunk from '../../redux/thunks/thunks';
@@ -38,7 +38,7 @@ function Landing() {
               fugiat provident explicabo illum quibusdam incidunt quo ut maxime
               adipisci voluptatem?
             </p>
-            <Button
+            <ButtonComponent
               width={'170px'}
               type={'button'}
               title={'Ver más'}

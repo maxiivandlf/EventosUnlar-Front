@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import './button.module.css';
+import style from './button.module.css';
 
-function Button(props) {
+function ButtonComponent(props) {
   const { title, action, to, type, width, height } = props;
 
   return (
@@ -9,7 +9,7 @@ function Button(props) {
       {type !== 'button' ? (
         <Link
           to={to}
-          className='button'
+          className={style.buttonComponent}
           style={{ width: width, height: height }}
         >
           {title}
@@ -17,7 +17,7 @@ function Button(props) {
       ) : (
         <button
           style={{ width: width, height: height }}
-          className='button'
+          className={style.buttonComponent}
           onClick={action}
         >
           {title}
@@ -27,4 +27,4 @@ function Button(props) {
   );
 }
 
-export default Button;
+export default ButtonComponent;

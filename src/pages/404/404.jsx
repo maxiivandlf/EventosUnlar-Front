@@ -1,4 +1,4 @@
-import { Button } from '../../components';
+import { ButtonComponent } from '../../components';
 function Page404() {
   return (
     <div
@@ -13,7 +13,7 @@ function Page404() {
       <h2>Page Not Found</h2>
       <h3>The page you are looking for does not exist.</h3>
       <h4>Please check the URL and try again.</h4>
-      <Button width={'120px'} to={'/'} title={'Volver al inicio'} />
+      <ButtonComponent width={'250px'} to={'/'} title={'Volver al inicio'} />
     </div>
   );
 }
