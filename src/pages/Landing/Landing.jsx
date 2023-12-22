@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Header, Button, MediaCard } from '../../components';
+import { Header, Button, MediaCard, Footer } from '../../components';
 import styles from './Landing.module.css';
 import encuentro from '../../assets/encuentro_informatico.jpg';
 import * as getEventsThunk from '../../redux/thunks/thunks';
@@ -19,10 +19,10 @@ function Landing() {
   );
   const handleChangePage = (event, value) => {
     setPage(value);
-    dispatch(getEventsThunk.getEvents(value, 2));
+    dispatch(getEventsThunk.getEvents(value, 5));
   };
   useEffect(() => {
-    dispatch(getEventsThunk.getEvents(1, 2));
+    dispatch(getEventsThunk.getEvents(1, 5));
   }, [dispatch]);
   return (
     <div className={styles.landingContainer}>
@@ -55,6 +55,7 @@ function Landing() {
           alignItems={'center'}
           justifyContent={'center'}
           margin={3}
+          minHeight={'50vh'}
         >
           {isLoading ? (
             <Box sx={{ display: 'flex' }}>
@@ -82,6 +83,7 @@ function Landing() {
           onChange={handleChangePage}
         />
       </section>
+      <Footer />
     </div>
   );
 }
