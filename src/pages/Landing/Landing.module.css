@@ -57,19 +57,6 @@
   font-size: large;
   text-align: center;
 }
-.contentText button {
-  background-color: var(--primary);
-  border: none;
-  padding: 20px 50px;
-  border-radius: 20px;
-  color: var(--white);
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-.contentText button:hover {
-  background-color: var(--secondary);
-}
 
 .uncomingEvents {
   background-color: rgb(39, 36, 51);
