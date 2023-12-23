@@ -1,16 +1,17 @@
 import { events } from '../slices';
-import api from '../../api/apiEvents';
+
+import { _get } from '../../api/api';
 
 export const getEvents = (page, limit) => {
   return async (dispatch, getState) => {
     dispatch(events.startLoadingEvents());
-    const response = await api.getEventsApi(page, limit);
+    const response = await _get(`/?page=${page}&limit=${limit}`);
     dispatch(
       events.setEvents({
-        events: response.events,
-        page: response.currentPage,
-        totalPages: response.totalPages,
-        totalEvents: response.totalEvents,
+        events: response.data.events,
+        page: response.data.currentPage,
+        totalPages: response.data.totalPages,
+        totalEvents: response.data.totalEvents,
       })
     );
   };

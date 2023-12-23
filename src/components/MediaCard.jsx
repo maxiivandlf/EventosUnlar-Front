@@ -21,8 +21,12 @@ export default function MediaCard({
   const newdate = formatDate(dateValue);
 
   return (
-    <Card sx={{ maxWidth: 345, borderRadius: 6, padding: 2 }}>
-      <CardMedia sx={{ height: 140 }} image={imageURL} title='green iguana' />
+    <Card sx={{ width: 345, borderRadius: 6, padding: 2 }}>
+      <CardMedia
+        sx={{ height: 140, width: '100%' }}
+        image={imageURL}
+        title='Foto evento'
+      />
 
       <CardContent
         sx={{
@@ -64,7 +68,13 @@ export default function MediaCard({
           <Typography gutterBottom variant='h5' component='div'>
             {title}
           </Typography>
-          <Typography variant='body2' color='text.secondary'>
+          <Typography
+            variant='body2'
+            color='text.secondary'
+            sx={{
+              textWrap: 'balance',
+            }}
+          >
             {description}
           </Typography>
         </Box>

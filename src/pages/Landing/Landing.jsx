@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Header, ButtonComponent, MediaCard, Footer } from '../../components';
 import styles from './Landing.module.css';
 import encuentro from '../../assets/encuentro_informatico.jpg';
-import * as getEventsThunk from '../../redux/thunks/thunks';
+import * as EventsThunk from '../../redux/thunks/thunks';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, CircularProgress, Pagination, Grid } from '@mui/material';
 
@@ -19,15 +19,14 @@ function Landing() {
   );
   const handleChangePage = (event, value) => {
     setPage(value);
-    dispatch(getEventsThunk.getEvents(value, 5));
+    dispatch(EventsThunk.getEvents(value, 5));
   };
   useEffect(() => {
-    dispatch(getEventsThunk.getEvents(1, 5));
+    dispatch(EventsThunk.getEvents(1, 5));
   }, [dispatch]);
   return (
     <div className={styles.landingContainer}>
       <Header />
-
       <section className={styles.banner}>
         <div className={styles.blur}>
           <img className={styles.image} src={encuentro} alt='' />
