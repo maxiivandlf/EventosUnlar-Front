@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { parseISO, isAfter, format } from 'date-fns';
 
 const useEventFilter = (events) => {
   const [filteredEvents, setFilteredEvents] = useState(events);
@@ -12,9 +13,15 @@ const useEventFilter = (events) => {
       event.name.toLowerCase().includes(filterCriteria.name.toLowerCase());
 
     const filterByDate = (event) => {
-      return console.log(event.dateEvent);
+      const dateEvent = format(parseISO(event.dateEvent), 'yyyy/MM/dd');
+      const filterDate = format(
+        parseISO(filterCriteria.dateEvent),
+        'yyyy/MM/dd'
+      );
+      if (dateEvent >= filterDate) {
+        return event;
+      }
     };
-
     const filtered =
       filterCriteria.name && filterCriteria.dateEvent
         ? events.filter((event) => filterByName(event) && filterByDate(event))
