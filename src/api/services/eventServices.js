@@ -9,8 +9,3 @@ export const getEventId = async (id) => {
   const response = await _get(`/${id}`);
   return response;
 };
-
-export const getAllEvents = async (page, limit) => {
-  const response = await _get(`/?page=${page}&limit=${limit}`);
-  return response;
-};
