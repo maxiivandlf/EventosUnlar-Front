@@ -20,10 +20,16 @@ export const eventsSlice = createSlice({
       state.totalPages = action.payload.totalPages;
       state.totalEvents = action.payload.totalEvents;
     },
+
+    updateEvents: (state, action) => {
+      state.isLoading = false;
+      state.events = [...state.events, action.payload.events];
+    },
     setPage: (state, action) => {
       state.currentPage = action.payload;
     },
   },
 });
 
-export const { setEvents, setPage, startLoadingEvents } = eventsSlice.actions;
+export const { setEvents, setPage, startLoadingEvents, updateEvents } =
+  eventsSlice.actions;

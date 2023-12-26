@@ -1,24 +1,46 @@
-import { Box, TextField, FormControl, Grid, Button } from '@mui/material';
+import {
+  Box,
+  TextField,
+  FormControl,
+  Grid,
+  Button,
+  Alert,
+  FormGroup,
+} from '@mui/material';
 import * as EventThunks from '../redux/thunks/thunks';
-
-import { createEvent } from '../api/services/eventServices';
-
-const handleSubmit = async (event) => {
-  event.preventDefault();
-  const dateISO = new Date(event.target.dateEvent.value).toISOString();
-  const evento = {
-    name: event.target.name.value,
-    type: event.target.type.value,
-    dateEvent: dateISO,
-    lat: event.target.lat.value,
-    long: event.target.long.value,
-    description: event.target.description.value,
-    imageURL: event.target.image.files[0],
-  };
-  await createEvent(evento);
-};
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
 function FormCreateEvent() {
+  const dispach = useDispatch();
+  const [send, setIsSend] = useState(false);
+  const [error, setError] = useState();
+
+  const handleSubmit = async (event) => {
+    try {
+      event.preventDefault();
+      const dateISO = new Date(event.target.dateEvent.value).toISOString();
+      const evento = {
+        name: event.target.name.value,
+        type: event.target.type.value,
+        dateEvent: dateISO,
+        lat: event.target.lat.value,
+        long: event.target.long.value,
+        description: event.target.description.value,
+        imageURL: event.target.image.files[0],
+      };
+      const response = await dispach(EventThunks.createEvent(evento));
+      if (response.status === 200) {
+        setError(null);
+        setIsSend(true);
+      }
+      console.log(response);
+    } catch (error) {
+      setError(error);
+      return console.log(error);
+    }
+  };
+
   return (
     <FormControl
       fullWidth
@@ -27,7 +49,6 @@ function FormCreateEvent() {
         backdropFilter: 'blur(10px)',
         padding: '20px',
         borderRadius: '10px',
-        marginY: '20px',
       }}
     >
       <Box component={'form'} onSubmit={handleSubmit}>
@@ -39,10 +60,13 @@ function FormCreateEvent() {
               name='name'
               variant='outlined'
               fullWidth
+              required
+              minLength={2}
             />
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <TextField
+              required
               id='type'
               label='Tipo de evento'
               name='type'
@@ -52,6 +76,7 @@ function FormCreateEvent() {
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <TextField
+              required
               id='dateEvent'
               type='date'
               name='dateEvent'
@@ -59,28 +84,40 @@ function FormCreateEvent() {
               fullWidth
             />
           </Grid>
+          <Box
+            sx={{
+              display: 'flex',
+              gap: 1,
+              margin: 2,
+              width: { sx: '100%', md: '46%' },
+            }}
+          >
+            <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+              <TextField
+                required
+                id='lat'
+                label='Latitud'
+                name='lat'
+                type='number'
+                variant='outlined'
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+              <TextField
+                required
+                id='long'
+                label='Longitud'
+                name='long'
+                type='number'
+                variant='outlined'
+                fullWidth
+              />
+            </Grid>
+          </Box>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <TextField
-              id='lat'
-              label='Latitud'
-              name='lat'
-              type='number'
-              variant='outlined'
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-            <TextField
-              id='long'
-              label='Longitud'
-              name='long'
-              type='number'
-              variant='outlined'
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-            <TextField
+              required
               id='description'
               label='Descripcion'
               name='description'
@@ -104,6 +141,12 @@ function FormCreateEvent() {
         <Button type='submit' variant='contained' sx={{ marginY: 2 }}>
           Enviar
         </Button>
+        {error && (
+          <Alert severity='error'>
+            A ocurrido un Error, intente nuevamente
+          </Alert>
+        )}
+        {send && <Alert severity='success'>Evento creado</Alert>}
       </Box>
     </FormControl>
   );

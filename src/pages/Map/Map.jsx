@@ -4,7 +4,6 @@ import { Typography, Box } from '@mui/material';
 function Map() {
   return (
     <div>
-      <Header />
       <Typography
         variant='h4'
         sx={{
