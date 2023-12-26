@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Header, ButtonComponent, MediaCard, Footer } from '../../components';
 import styles from './Landing.module.css';
-import encuentro from '../../assets/encuentro_informatico.jpg';
 import * as EventsThunk from '../../redux/thunks/thunks';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, CircularProgress, Pagination, Grid } from '@mui/material';
@@ -26,10 +25,9 @@ function Landing() {
   }, [dispatch]);
   return (
     <div className={styles.landingContainer}>
-      <Header />
       <section className={styles.banner}>
         <div className={styles.blur}>
-          <img className={styles.image} src={encuentro} alt='' />
+          <img className={styles.image} src={'/default.jpg'} alt='' />
           <div className={styles.contentText}>
             <h2>XIX Encuentro Informático Riojano</h2>
             <p>
@@ -82,7 +80,6 @@ function Landing() {
           onChange={handleChangePage}
         />
       </section>
-      <Footer />
     </div>
   );
 }

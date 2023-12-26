@@ -1,7 +1,7 @@
 import { _post, _get } from '../api';
 
 export const createEvent = async (data) => {
-  const response = await _post('/', data);
+  const response = await _post('/events', data);
   return response;
 };
 

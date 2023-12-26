@@ -15,6 +15,7 @@ function Footer() {
         alignItems: 'center',
         flexDirection: 'column',
         gap: 2,
+        marginTop: 2,
       }}
     >
       <Box display={'flex'} flexDirection={'row'} gap={4}>
