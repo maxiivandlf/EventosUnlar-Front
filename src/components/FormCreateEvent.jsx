@@ -121,6 +121,7 @@ function FormCreateEvent() {
               name='dateEvent'
               variant='outlined'
               fullWidth
+              error={errors.dateEvent ? true : false}
               helperText={errors.dateEvent?.message}
               {...register('dateEvent', {
                 required: {
