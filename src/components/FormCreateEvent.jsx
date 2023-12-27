@@ -4,9 +4,11 @@ import {
   FormControl,
   Grid,
   Button,
+  CircularProgress,
   Alert,
 } from '@mui/material';
 import * as EventThunks from '../redux/thunks/thunks';
+import confetti from 'canvas-confetti';
 import { useForm } from 'react-hook-form';
 import { parseISO, format } from 'date-fns';
 import { useDispatch } from 'react-redux';
@@ -16,40 +18,44 @@ function FormCreateEvent() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitted, isSubmitting },
     watch,
     setValue,
     reset,
   } = useForm();
   const dispach = useDispatch();
-  const [send, setIsSend] = useState(false);
-  const [error, setError] = useState();
-  const [dataForm, setDataForm] = useState();
+  const [formStatus, setFormStatus] = useState(null);
 
-  const onSubmit = handleSubmit((data) => {
-    const image = data.imageURL;
-
-    if (image !== null && image !== undefined) {
-      const newEvent = {
-        name: data.name,
-        type: data.type,
-        dateEvent: data.dateEvent,
-        lat: data.lat,
-        long: data.long,
-        description: data.description,
-        imageURL: data.imageURL[0],
-      };
-      dispach(EventThunks.createEvent(newEvent));
-    } else {
-      const newEvent = {
-        name: data.name,
-        type: data.type,
-        dateEvent: data.dateEvent,
-        lat: data.lat,
-        long: data.long,
-        description: data.description,
-      };
-      dispach(EventThunks.createEvent(newEvent));
+  const onSubmit = handleSubmit(async (data) => {
+    const newEvent = {
+      name: data.name,
+      type: data.type,
+      dateEvent: data.dateEvent,
+      lat: data.lat,
+      long: data.long,
+      description: data.description,
+      imageURL: data.imageURL ? data.imageURL[0] : null,
+    };
+    try {
+      const res = await dispach(EventThunks.createEvent(newEvent));
+      if (res.status === 200) {
+        setFormStatus('success');
+        confetti({
+          particleCount: 200,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+        });
+        confetti({
+          particleCount: 200,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+        });
+        reset();
+      }
+    } catch (error) {
+      setFormStatus(error);
     }
   });
 
@@ -73,6 +79,7 @@ function FormCreateEvent() {
               variant='outlined'
               fullWidth
               minLength={2}
+              error={errors.name ? true : false}
               helperText={errors.name?.message}
               {...register('name', {
                 required: {
@@ -97,6 +104,7 @@ function FormCreateEvent() {
               name='type'
               variant='outlined'
               fullWidth
+              error={errors.type ? true : false}
               helperText={errors.type?.message}
               {...register('type', {
                 required: {
@@ -146,6 +154,7 @@ function FormCreateEvent() {
                 type='text'
                 variant='outlined'
                 fullWidth
+                error={errors.lat ? true : false}
                 helperText={errors.lat?.message}
                 {...register('lat', {
                   required: {
@@ -165,6 +174,7 @@ function FormCreateEvent() {
                 id='long'
                 label='Longitud'
                 name='long'
+                error={errors.long ? true : false}
                 type='text'
                 variant='outlined'
                 fullWidth
@@ -189,6 +199,7 @@ function FormCreateEvent() {
               label='Descripcion'
               name='description'
               variant='outlined'
+              error={errors.description ? true : false}
               multiline
               fullWidth
               helperText={errors.description?.message}
@@ -210,7 +221,17 @@ function FormCreateEvent() {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-            <label htmlFor='imageURL'>Imagen</label>
+            <label
+              style={{
+                display: 'block',
+                fontFamily: 'Roboto',
+                color: 'var(--color-surface-300)',
+                marginBottom: '5px',
+              }}
+              htmlFor='imageURL'
+            >
+              Imagen/banner del evento (archivos jpg o png)
+            </label>
             <TextField
               id='imageURL'
               name='image'
@@ -237,15 +258,23 @@ function FormCreateEvent() {
             />
           </Grid>
         </Grid>
-        <Button type='submit' variant='contained' sx={{ marginY: 2 }}>
-          Enviar
-        </Button>
-        {error && (
+
+        {isSubmitting === true ? (
+          <CircularProgress />
+        ) : (
+          <Button type='submit' variant='contained' sx={{ marginY: 2 }}>
+            Crear nuevo evento 🎊
+          </Button>
+        )}
+
+        {formStatus === 'error' && errors.length !== 0 && (
           <Alert severity='error'>
             A ocurrido un Error, intente nuevamente
           </Alert>
         )}
-        {send && <Alert severity='success'>Evento creado</Alert>}
+        {formStatus === 'success' && isSubmitted && (
+          <Alert severity='success'>Evento creado</Alert>
+        )}
       </Box>
     </FormControl>
   );
