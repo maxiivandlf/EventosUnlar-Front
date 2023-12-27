@@ -1,10 +1,8 @@
 import {
   MediaCard,
-  Header,
   ButtomFilter,
   FormCreateEvent,
   PopUp,
-  Footer,
 } from '../../components';
 import { Grid, Box, CircularProgress, Typography } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
@@ -23,9 +21,9 @@ function Events() {
     updateFilterCriteria(name, value);
   };
 
-  const handlebutton = () => {
-    console.log('Clikeando');
-  };
+  // const handlebutton = () => {
+  //   console.log('Clikeando');
+  // };
 
   useEffect(() => {
     dispatch(EventsThunk.getEvents());
@@ -70,7 +68,7 @@ function Events() {
         </Box>
 
         <Grid container gap={3} alignItems={'center'} justifyContent={'center'}>
-          {isLoading ? (
+          {isLoading && (
             <Box
               sx={{
                 display: 'flex',
@@ -81,19 +79,41 @@ function Events() {
             >
               <CircularProgress />
             </Box>
-          ) : (
-            filteredEvents.map((event) => (
-              <Grid key={event._id}>
-                <MediaCard
-                  description={event.description}
-                  title={event.name}
-                  idEvent={event._id}
-                  imageURL={event.imageURL || '/default.jpg'}
-                  dateValue={event.dateEvent}
-                />
-              </Grid>
-            ))
           )}
+          {events.length !== 0 && !isLoading
+            ? filteredEvents.map((event) => (
+                <Grid key={event._id}>
+                  <MediaCard
+                    description={event.description}
+                    title={event.name}
+                    idEvent={event._id}
+                    imageURL={event.imageURL || '/default.jpg'}
+                    dateValue={event.dateEvent}
+                  />
+                </Grid>
+              ))
+            : !isLoading && (
+                <Box
+                  sx={{
+                    height: '50vh',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Typography
+                    variant='h5'
+                    align='center'
+                    fontWeight={600}
+                    color={'#f5167e'}
+                    textTransform={'uppercase'}
+                    paddingY={3}
+                    width={'100%'}
+                  >
+                    No Tienes Eventos
+                  </Typography>
+                </Box>
+              )}
         </Grid>
       </Box>
     </Box>
