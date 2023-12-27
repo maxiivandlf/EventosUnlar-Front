@@ -145,59 +145,79 @@ function FormCreateEvent() {
               gap: 1,
               margin: 2,
               width: { sx: '100%', md: '46%' },
+              flexDirection: { xs: 'column', md: 'row' },
             }}
           >
-            <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-              <TextField
-                id='lat'
-                label='Latitud'
-                name='lat'
-                type='text'
-                variant='outlined'
-                fullWidth
-                error={errors.lat ? true : false}
-                helperText={errors.lat?.message}
-                {...register('lat', {
-                  required: {
-                    value: true,
-                    message: 'La latitud es requerida',
-                  },
+            <label
+              style={{
+                display: 'block',
+                fontFamily: 'Roboto',
+                color: 'var(--color-surface-300)',
+                marginBottom: '5px',
+              }}
+            >
+              Ubicación
+            </label>
+            <Box
+              sx={{
+                display: 'flex',
+                gap: 1,
+                margin: 2,
+                width: { sx: '100%', md: '46%' },
+              }}
+            >
+              <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                <TextField
+                  id='lat'
+                  label='Latitud'
+                  name='lat'
+                  type='text'
+                  variant='outlined'
+                  fullWidth
+                  error={errors.lat ? true : false}
+                  helperText={errors.lat?.message}
+                  {...register('lat', {
+                    required: {
+                      value: true,
+                      message: 'La latitud es requerida',
+                    },
 
-                  pattern: {
-                    value: /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$/,
-                    message: 'La latitud debe estar entre -90 y 90',
-                  },
-                })}
-              />
-            </Grid>
-            <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-              <TextField
-                id='long'
-                label='Longitud'
-                name='long'
-                error={errors.long ? true : false}
-                type='text'
-                variant='outlined'
-                fullWidth
-                helperText={errors.long?.message}
-                {...register('long', {
-                  required: {
-                    value: true,
-                    message: 'La longitud es requerida',
-                  },
-                  pattern: {
-                    value:
-                      /^[-+]?(180(\.0+)?|1[0-7]\d(\.\d+)?|\d{1,2}(\.\d+)?)$/,
-                    message: 'La longitud debe estar entre -180 y 180',
-                  },
-                })}
-              />
-            </Grid>
+                    pattern: {
+                      value: /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$/,
+                      message: 'La latitud debe estar entre -90 y 90',
+                    },
+                  })}
+                />
+              </Grid>
+              <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                <TextField
+                  id='long'
+                  label='Longitud'
+                  name='long'
+                  error={errors.long ? true : false}
+                  type='text'
+                  variant='outlined'
+                  fullWidth
+                  helperText={errors.long?.message}
+                  {...register('long', {
+                    required: {
+                      value: true,
+                      message: 'La longitud es requerida',
+                    },
+                    pattern: {
+                      value:
+                        /^[-+]?(180(\.0+)?|1[0-7]\d(\.\d+)?|\d{1,2}(\.\d+)?)$/,
+                      message: 'La longitud debe estar entre -180 y 180',
+                    },
+                  })}
+                />
+              </Grid>
+            </Box>
           </Box>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <TextField
               id='description'
-              label='Descripcion'
+              label='Descripcion del evento'
               name='description'
               variant='outlined'
               error={errors.description ? true : false}
