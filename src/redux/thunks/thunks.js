@@ -21,7 +21,7 @@ export const createEvent = (event) => {
   return async (dispatch, getState) => {
     dispatch(events.startLoadingEvents());
     const response = await _post(`/events`, event);
-    console.log(response);
+
     dispatch(
       events.updateEvents({
         events: response.data._newEvent,
