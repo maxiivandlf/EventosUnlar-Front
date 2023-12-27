@@ -6,13 +6,18 @@ import {
   Button,
   CircularProgress,
   Alert,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormHelperText,
 } from '@mui/material';
 import * as EventThunks from '../redux/thunks/thunks';
 import confetti from 'canvas-confetti';
-import { useForm } from 'react-hook-form';
+import { Form, useForm } from 'react-hook-form';
 import { parseISO, format } from 'date-fns';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { typeEvents } from '../constants/typesEvents';
 
 function FormCreateEvent() {
   const {
@@ -98,10 +103,40 @@ function FormCreateEvent() {
             />
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-            <TextField
+            <FormControl fullWidth>
+              <InputLabel id='type'>Tipo de evento</InputLabel>
+              <Select
+                fullWidth
+                labelId='type'
+                id='type'
+                name='type'
+                label='Tipo de evento'
+                error={errors.type ? true : false}
+                defaultValue={''}
+                {...register('type', {
+                  required: {
+                    value: true,
+                    message: 'El tipo de evento es requerido',
+                  },
+                })}
+              >
+                {typeEvents.map((type) => (
+                  <MenuItem key={type.type} value={type.value}>
+                    {type.type}
+                  </MenuItem>
+                ))}
+              </Select>
+              {errors.type && (
+                <FormHelperText error={true}>
+                  {errors.type.message}
+                </FormHelperText>
+              )}
+            </FormControl>
+            {/* <TextField
               id='type'
               label='Tipo de evento'
               name='type'
+              type=''
               variant='outlined'
               fullWidth
               error={errors.type ? true : false}
@@ -112,7 +147,7 @@ function FormCreateEvent() {
                   message: 'El tipo de evento es requerido',
                 },
               })}
-            />
+            /> */}
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <TextField

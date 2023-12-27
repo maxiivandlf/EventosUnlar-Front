@@ -5,7 +5,6 @@ export const markers = [
       lat: -29.430422,
       lng: -66.868745,
     },
-    icon: '/vite.svg',
   },
   {
     name: 'Comedor Universitario',
