@@ -24,10 +24,10 @@ function Landing() {
   );
   const handleChangePage = (event, value) => {
     setPage(value);
-    dispatch(EventsThunk.getEvents(value, 5));
+    dispatch(EventsThunk.getEvents(value, 4));
   };
   useEffect(() => {
-    dispatch(EventsThunk.getEvents(1, 5));
+    dispatch(EventsThunk.getEvents(1, 4));
   }, [dispatch]);
   return (
     <div className={styles.landingContainer}>
@@ -74,65 +74,66 @@ function Landing() {
         >
           Proximos eventos
         </Typography>
-        {isLoading && (
-          <Box
-            sx={{
-              display: 'flex',
-              height: '50vh',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <CircularProgress />
-          </Box>
-        )}
-        {events.length === 0 && !isLoading && (
-          <Typography
-            sx={{
-              color: 'var(--color-primary-100)',
-              textAlign: 'center',
-              marginTop: '20px',
-              fontSize: '20px',
-              fontWeight: 'bold',
-              marginBottom: '20px',
-              fontFamily: 'Roboto',
-              textTransform: 'uppercase',
-              letterSpacing: '1px',
-              lineHeight: '1.5',
-            }}
-          >
-            No hay eventos para mostrar
-          </Typography>
-        )}
-        {events.map((event) => (
-          <>
-            <Grid
-              container
-              gap={3}
-              alignItems={'center'}
-              justifyContent={'center'}
-              margin={3}
-              minHeight={'50vh'}
+
+        <Grid
+          container
+          gap={3}
+          alignItems={'center'}
+          justifyContent={'center'}
+          margin={3}
+          minHeight={'50vh'}
+          width={'100%'}
+        >
+          {isLoading && (
+            <Box
+              sx={{
+                display: 'flex',
+                height: '50vh',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
             >
-              <Grid key={event._id} item md={4} marginX={2}>
-                <MediaCard
-                  description={event.description}
-                  title={event.name}
-                  imageURL={event.imageURL || '/default.jpg'}
-                  idEvent={event._id}
-                  dateValue={event.dateEvent}
-                />
-              </Grid>
+              <CircularProgress />
+            </Box>
+          )}
+          {events.length === 0 && !isLoading && (
+            <Typography
+              sx={{
+                color: 'var(--color-primary-100)',
+                textAlign: 'center',
+                marginTop: '20px',
+                fontSize: '20px',
+                fontWeight: 'bold',
+                marginBottom: '20px',
+                fontFamily: 'Roboto',
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                lineHeight: '1.5',
+              }}
+            >
+              No hay eventos para mostrar
+            </Typography>
+          )}
+          {events.map((event) => (
+            <Grid key={event._id} item md={4} marginX={2}>
+              <MediaCard
+                description={event.description}
+                title={event.name}
+                imageURL={event.imageURL || '/default.jpg'}
+                idEvent={event._id}
+                dateValue={event.dateEvent}
+              />
             </Grid>
-            <Pagination
-              count={totalPages}
-              color='secondary'
-              sx={{ borderRadius: '50px', margin: 2 }}
-              page={page}
-              onChange={handleChangePage}
-            />
-          </>
-        ))}
+          ))}
+        </Grid>
+
+        <Pagination
+          count={totalPages}
+          color='secondary'
+          sx={{ borderRadius: '50px', margin: 2 }}
+          page={page}
+          onChange={handleChangePage}
+        />
       </Box>
     </div>
   );
