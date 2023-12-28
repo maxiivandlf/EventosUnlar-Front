@@ -19,7 +19,7 @@ export default function BasicPopover({ children }) {
 
   return (
     <Box>
-      <FloatingButtons add action={handleClick} />
+      <FloatingButtons icon={'add'} action={handleClick} />
       <Popover
         id={id}
         open={open}
@@ -35,7 +35,7 @@ export default function BasicPopover({ children }) {
       >
         {children}
         <Box position={'absolute'} right={20} bottom={10} zIndex={90}>
-          <FloatingButtons close action={handleClose} />
+          <FloatingButtons icon={'close'} action={handleClose} />
         </Box>
       </Popover>
     </Box>

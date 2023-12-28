@@ -5,42 +5,59 @@ import EditIcon from '@mui/icons-material/Edit';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import NavigationIcon from '@mui/icons-material/Navigation';
 import CloseIcon from '@mui/icons-material/Close';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function FloatingActionButtons({
-  add,
-  edit,
-  favorite,
-  navigation,
-  close,
-  action,
-}) {
+export default function FloatingActionButtons({ icon, action }) {
   return (
     <Box sx={{ '& > :not(style)': { m: 1 } }}>
-      {add && (
+      {icon === 'add' && (
         <Fab color='primary' aria-label='add' onClick={action}>
           <AddIcon />
         </Fab>
       )}
 
-      {edit && (
-        <Fab color='secondary' aria-label='edit' onClick={action}>
+      {icon === 'edit' && (
+        <Fab
+          color='secondary'
+          aria-label='edit'
+          onClick={action}
+          sx={{
+            '&:hover': {
+              boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)',
+            },
+          }}
+        >
           <EditIcon />
         </Fab>
       )}
-      {navigation && (
+      {icon === 'navigation' && (
         <Fab variant='extended' onClick={action}>
           <NavigationIcon sx={{ mr: 1 }} />
           Navigate
         </Fab>
       )}
-      {favorite && (
+      {icon === 'favorite' && (
         <Fab disabled aria-label='like' onClick={action}>
           <FavoriteIcon />
         </Fab>
       )}
-      {close && (
+      {icon === 'close' && (
         <Fab color='error' aria-label='close' onClick={action}>
           <CloseIcon />
+        </Fab>
+      )}
+      {icon === 'delete' && (
+        <Fab
+          color='error'
+          aria-label='delete'
+          onClick={action}
+          sx={{
+            '&:hover': {
+              boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)',
+            },
+          }}
+        >
+          <DeleteIcon />
         </Fab>
       )}
     </Box>

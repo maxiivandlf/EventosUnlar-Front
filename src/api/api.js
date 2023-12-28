@@ -46,10 +46,14 @@ export const _delete = async (url, id, auth = null) => {
     return null;
   }
 };
-export const _put = async (url, id, data, auth = null) => {
+export const _put = async (url, data, auth = null) => {
   try {
-    const response = await api.put(url, id, data, {
+    const response = await api.put(url, data, {
       auth: auth,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
+      },
     });
     return response;
   } catch (error) {
