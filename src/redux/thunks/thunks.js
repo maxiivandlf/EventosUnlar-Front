@@ -5,7 +5,8 @@ import { _get, _post } from '../../api/api';
 export const getEvents = (page, limit) => {
   return async (dispatch, getState) => {
     dispatch(events.startLoadingEvents());
-    const response = await _get(`/events/?page=${page}&limit=${limit}`);
+    const response = await _get(`/events/?page=${page}&limit=${limit}
+    `);
     dispatch(
       events.setEvents({
         events: response.data.events,
@@ -14,6 +15,7 @@ export const getEvents = (page, limit) => {
         totalEvents: response.data.totalEvents,
       })
     );
+    return response;
   };
 };
 

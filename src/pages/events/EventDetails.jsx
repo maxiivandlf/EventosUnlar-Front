@@ -1,17 +1,18 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getEventId } from '../../api/services/eventServices';
+import { getEventId, deleteEvent } from '../../api/services/eventServices';
 import { Box, Typography, CircularProgress } from '@mui/material';
-import { MapView } from '../../components';
+import { FloatingButtons, MapView } from '../../components';
 import formatDate from '../../utils/formatDate';
 import svgCalendar from '../../assets/calendar.png';
-import { set } from 'date-fns';
 
 function EventDetails() {
   const { eventId } = useParams();
   const [event, setEvent] = useState([]);
   const [dateFormated, setDateFormated] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const image = event.imageURL ? event.imageURL : '/public/default.webp';
 
@@ -21,6 +22,15 @@ function EventDetails() {
     setEvent(response.data);
     setDateFormated(formatDate(response.data.dateEvent));
     setIsLoading(false);
+  };
+
+  const handleEdit = () => {
+    navigate(`/eventos/editar/${eventId}`);
+  };
+
+  const handleDelete = async () => {
+    await deleteEvent(eventId);
+    navigate('/eventos');
   };
 
   useEffect(() => {
@@ -177,6 +187,18 @@ function EventDetails() {
               >
                 {event.description}
               </Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'row',
+                  paddingY: '1.5rem',
+                }}
+              >
+                <FloatingButtons icon={'edit'} action={handleEdit} />
+                <FloatingButtons icon={'delete'} action={handleDelete} />
+              </Box>
             </Box>
             <MapView
               width={'100%'}
