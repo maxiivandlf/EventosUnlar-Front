@@ -6,6 +6,6 @@ export const createEvent = async (data) => {
 };
 
 export const getEventId = async (id) => {
-  const response = await _get(`/${id}`);
+  const response = await _get(`/events/${id}`);
   return response;
 };

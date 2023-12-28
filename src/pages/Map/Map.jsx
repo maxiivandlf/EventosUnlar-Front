@@ -1,4 +1,4 @@
-import { MapView, Header } from '../../components';
+import { MapView } from '../../components';
 import { Typography, Box } from '@mui/material';
 
 function Map() {

@@ -4,6 +4,7 @@ import { Footer, Header } from './components';
 import Landing from './pages/Landing/Landing';
 import Map from './pages/Map/Map';
 import Events from './pages/events/Events';
+import EventDetails from './pages/events/EventDetails';
 import Page404 from './pages/404/404';
 
 function App() {
@@ -13,9 +14,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Landing />} />
         <Route path='/mapa' element={<Map />} />
-        <Route path='/eventos' element={<Events />}>
-          <Route path='details/:eventId' element={<Events />} />
-        </Route>
+        <Route path='/eventos' element={<Events />} />
+        <Route path='/eventos/details/:eventId' element={<EventDetails />} />
         <Route path='*' element={<Page404 />} />
       </Routes>
       <Footer />
