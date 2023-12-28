@@ -80,7 +80,6 @@ export default function MediaCard({
         </Box>
       </CardContent>
       <CardActions sx={{ gap: 2 }}>
-        <Button size='small'>Compartir</Button>
         <Link
           className='primary-btn'
           to={`/eventos/details/${idEvent}`}
