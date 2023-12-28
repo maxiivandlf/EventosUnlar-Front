@@ -1,0 +1,79 @@
+.landingContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.banner {
+  display: flex;
+  background-image: url(../../assets/unlar.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.blur {
+  background: linear-gradient(#e66464a1, #9198e571);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  width: 100%;
+  height: 100%;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+.image {
+  width: 50vw;
+  aspect-ratio: 1/1;
+  margin: 20px;
+  border-radius: 30px;
+}
+.contentText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+.contentText h2 {
+  color: var(--secondary);
+  font-weight: 500;
+  font-size: 2rem;
+  text-wrap: balance;
+  text-align: center;
+}
+.contentText p {
+  color: var(--secondary);
+  text-wrap: balance;
+  font-size: large;
+  text-align: center;
+}
+
+.uncomingEvents {
+  background-color: rgb(39, 36, 51);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (width <= 769px) {
+  .blur {
+    flex-direction: column;
+  }
+  .image {
+    width: 80vw;
+  }
+}

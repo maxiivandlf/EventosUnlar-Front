@@ -1,0 +1,15 @@
+.buttonComponent {
+  background-color: var(--color-primary-100);
+  border: none;
+  padding: 20px 50px;
+  border-radius: 20px;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+.buttonComponent:hover {
+  background-color: var(--secondary);
+}

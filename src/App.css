@@ -1,0 +1,55 @@
+@import url(./styles/theme.css);
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+  font-family: Roboto, 'Times New Roman', Times, serif;
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-surface-200);
+  text-decoration: none;
+  list-style: none;
+  padding: 0;
+}
+
+.leaflet-container {
+  width: 90%;
+  height: 70%;
+}
+
+.logo {
+  width: 50px;
+}
+.primary-btn {
+  padding: 10px 30px;
+  background-color: var(--color-primary-100);
+  color: var(--white);
+  border-radius: 20px;
+}
+
+.primary-btn:hover {
+  background-color: var(--secondary);
+}
+
+.nav-button {
+  padding: 10px 30px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.is-active {
+  pointer-events: none;
+  background-color: var(--color-primary-100);
+}
+.is-active p {
+  color: var(--white);
+}
+
+.logoIcon {
+  width: 48px;
+  height: 48px;
+}
