@@ -1,4 +1,7 @@
 import { Box, Typography } from '@mui/material';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
@@ -39,14 +42,36 @@ function Footer() {
             sx={{ width: '100%', textWrap: 'balance' }}
             variant='body1'
           >
-            UNLaR - Universidad Nacional de La Rioja
+            Web desarrollada por MaxiIvanDev
           </Typography>
         </Box>
       </Box>
-      <Box>
-        <Typography variant='body1'>
-          Eventos UNLaR © 2023 - Todos los derechos reservados
-        </Typography>
+      <Box
+        sx={{
+          display: 'flex',
+          gap: 2,
+        }}
+      >
+        <Link
+          to={'https://github.com/maxiivandlf'}
+          rel='noreferrer'
+          style={{
+            textDecoration: 'none',
+            color: 'var(--color-primary-100)',
+          }}
+        >
+          <GitHubIcon fontSize='large' />
+        </Link>
+        <Link
+          to={'https://github.com/maxiivandlf'}
+          rel='noreferrer'
+          style={{
+            textDecoration: 'none',
+            color: 'var(--color-primary-100)',
+          }}
+        >
+          <LinkedInIcon fontSize='large' />
+        </Link>
       </Box>
     </Box>
   );
