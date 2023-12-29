@@ -2,7 +2,7 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 import { Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import Markers from './Markers';
-import { marker } from 'leaflet';
+import iconEvent from '../../assets/iconEvent';
 
 function MapView({
   width,
@@ -26,7 +26,7 @@ function MapView({
 
       <Markers />
       {marker && (
-        <Marker position={{ lat: lat, lng: lng }}>
+        <Marker position={{ lat: lat, lng: lng }} icon={iconEvent}>
           <Popup>
             <span>{marker.name}</span>
             <br />
