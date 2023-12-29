@@ -34,7 +34,7 @@ function ResponsiveHeader() {
       }}
       position='static'
     >
-      <Container maxWidth='xl'>
+      <Container maxWidth='xl' sx={{ padding: 0 }}>
         <Toolbar disableGutters>
           <Typography
             variant='h6'
@@ -57,7 +57,9 @@ function ResponsiveHeader() {
             EVENTOS UNLAR
           </Typography>
 
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+          <Box
+            sx={{ display: { xs: 'flex', md: 'none' }, position: 'absolute' }}
+          >
             <IconButton
               size='large'
               aria-label='account of current user'

@@ -14,7 +14,7 @@ function EventDetails() {
 
   const navigate = useNavigate();
 
-  const image = event.imageURL ? event.imageURL : '/public/default.webp';
+  const image = event.imageURL ? event.imageURL : '/default.webp';
 
   const getEvent = async (id) => {
     setIsLoading(true);
