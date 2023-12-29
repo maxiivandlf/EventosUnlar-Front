@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Header, ButtonComponent, MediaCard, Footer } from '../../components';
+import { ButtonComponent, MediaCard } from '../../components';
 import styles from './Landing.module.css';
 import * as EventsThunk from '../../redux/thunks/thunks';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,24 +11,21 @@ import {
   Typography,
 } from '@mui/material';
 
-const handleClick = () => {
-  console.log('Ver mas detalles del evento');
-};
-
 function Landing() {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
 
-  const { isLoading, events, totalPages } = useSelector(
+  const { isLoading, events, totalPages, totalEvents } = useSelector(
     (state) => state.events
   );
   const handleChangePage = (event, value) => {
     setPage(value);
-    dispatch(EventsThunk.getEvents(value, 4));
+    dispatch(EventsThunk.getEvents(value, 1));
   };
   useEffect(() => {
     dispatch(EventsThunk.getEvents(1, 4));
   }, [dispatch]);
+  console.log(page);
   return (
     <div className={styles.landingContainer}>
       <section className={styles.banner}>
@@ -37,8 +34,8 @@ function Landing() {
             <>
               <img
                 className={styles.image}
-                style={{ maxWidth: '500px' }}
-                src={events[0].imageURL}
+                style={{ maxWidth: '500px', aspectRatio: 8 / 6 }}
+                src={events[0]?.imageURL || '/default.webp'}
                 alt=''
               />
               <div className={styles.contentText}>
@@ -64,10 +61,8 @@ function Landing() {
             color: 'var(--color-primary-100)',
             textAlign: 'center',
             marginTop: '20px',
-
             fontWeight: 'bold',
             marginBottom: '20px',
-
             textTransform: 'uppercase',
           }}
           textAlign='center'
@@ -114,17 +109,18 @@ function Landing() {
               No hay eventos para mostrar
             </Typography>
           )}
-          {events.map((event) => (
-            <Grid key={event._id} item md={4} marginX={2}>
-              <MediaCard
-                description={event.description}
-                title={event.name}
-                imageURL={event.imageURL || '/default.jpg'}
-                idEvent={event._id}
-                dateValue={event.dateEvent}
-              />
-            </Grid>
-          ))}
+          {!isLoading &&
+            events.map((event) => (
+              <Grid key={event._id} item md={4} marginX={2}>
+                <MediaCard
+                  description={event.description}
+                  title={event.name}
+                  imageURL={event.imageURL || '/default.jpg'}
+                  idEvent={event._id}
+                  dateValue={event.dateEvent}
+                />
+              </Grid>
+            ))}
         </Grid>
 
         <Pagination
