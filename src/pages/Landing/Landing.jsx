@@ -20,7 +20,7 @@ function Landing() {
   );
   const handleChangePage = (event, value) => {
     setPage(value);
-    dispatch(EventsThunk.getEvents(value, 1));
+    dispatch(EventsThunk.getEvents(value, 4));
   };
   useEffect(() => {
     dispatch(EventsThunk.getEvents(1, 4));
