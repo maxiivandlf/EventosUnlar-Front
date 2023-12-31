@@ -63,7 +63,7 @@ function Footer() {
           <GitHubIcon fontSize='large' />
         </Link>
         <Link
-          to={'https://github.com/maxiivandlf'}
+          to={'https://www.linkedin.com/in/maxiivandlf/'}
           rel='noreferrer'
           style={{
             textDecoration: 'none',
