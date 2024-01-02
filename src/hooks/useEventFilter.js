@@ -6,6 +6,7 @@ const useEventFilter = (events) => {
   const [filterCriteria, setFilterCriteria] = useState({
     name: '',
     dateEvent: '',
+    upcoming: false,
   });
 
   useEffect(() => {
@@ -22,13 +23,35 @@ const useEventFilter = (events) => {
         return event;
       }
     };
+
+    const filterUpcoming = (event) => {
+      const currentDate = new Date();
+      const eventDate = parseISO(event.dateEvent);
+      return isAfter(eventDate, currentDate);
+    };
+
     const filtered =
       filterCriteria.name && filterCriteria.dateEvent
-        ? events.filter((event) => filterByName(event) && filterByDate(event))
+        ? events.filter(
+            (event) =>
+              filterByName(event) &&
+              filterByDate(event) &&
+              (!filterCriteria.upcoming || filterUpcoming(event))
+          )
         : filterCriteria.name
-        ? events.filter((event) => filterByName(event))
+        ? events.filter(
+            (event) =>
+              filterByName(event) &&
+              (!filterCriteria.upcoming || filterUpcoming(event))
+          )
         : filterCriteria.dateEvent
-        ? events.filter((event) => filterByDate(event))
+        ? events.filter(
+            (event) =>
+              filterByDate(event) &&
+              (!filterCriteria.upcoming || filterUpcoming(event))
+          )
+        : filterCriteria.upcoming
+        ? events.filter((event) => filterUpcoming(event))
         : events;
 
     setFilteredEvents(filtered);
@@ -37,10 +60,12 @@ const useEventFilter = (events) => {
   const updateFilterCriteria = (name, value) => {
     setFilterCriteria((prevCriteria) => ({ ...prevCriteria, [name]: value }));
   };
+
   const resetFilters = () => {
     setFilterCriteria({
       name: '',
       dateEvent: '',
+      upcoming: false,
     });
   };
 

@@ -10,42 +10,45 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
+import useEventFilter from '../../hooks/useEventFilter';
 
 function Landing() {
-  const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
-
-  const { isLoading, events, totalPages, totalEvents } = useSelector(
+  const { isLoading, events, totalPages } = useSelector(
     (state) => state.events
   );
+  const [page, setPage] = useState(1);
+
+  const dispatch = useDispatch();
+  const { filteredEvents, updateFilterCriteria } = useEventFilter(events);
+
   const handleChangePage = (event, value) => {
     setPage(value);
     dispatch(EventsThunk.getEvents(value, 4));
   };
   useEffect(() => {
     dispatch(EventsThunk.getEvents(1, 4));
+    updateFilterCriteria('upcoming', true);
   }, [dispatch]);
-  console.log(page);
   return (
     <div className={styles.landingContainer}>
       <section className={styles.banner}>
         <div className={styles.blur}>
-          {events.length > 0 && (
+          {filteredEvents.length > 0 && (
             <>
               <img
                 className={styles.image}
                 style={{ maxWidth: '500px', aspectRatio: 8 / 6 }}
-                src={events[0]?.imageURL || '/default.webp'}
+                src={filteredEvents[0]?.imageURL || '/default.webp'}
                 alt=''
               />
               <div className={styles.contentText}>
-                <h2>{events[0].name}</h2>
-                <p>{events[0].description} </p>
+                <h2>{filteredEvents[0].name}</h2>
+                <p>{filteredEvents[0].description} </p>
                 <ButtonComponent
                   width={'170px'}
                   type={'link'}
                   title={'Ver más'}
-                  to={`/eventos/details/${events[0]._id}`}
+                  to={`/eventos/details/${filteredEvents[0]._id}`}
                 />
               </div>
             </>
@@ -91,7 +94,7 @@ function Landing() {
               <CircularProgress />
             </Box>
           )}
-          {events.length === 0 && !isLoading && (
+          {filteredEvents.length === 0 && !isLoading && (
             <Typography
               sx={{
                 color: 'var(--color-primary-100)',
@@ -110,7 +113,7 @@ function Landing() {
             </Typography>
           )}
           {!isLoading &&
-            events.map((event) => (
+            filteredEvents.map((event) => (
               <Grid key={event._id} item md={4} marginX={2}>
                 <MediaCard
                   description={event.description}

@@ -21,10 +21,6 @@ function Events() {
     updateFilterCriteria(name, value);
   };
 
-  // const handlebutton = () => {
-  //   console.log('Clikeando');
-  // };
-
   useEffect(() => {
     dispatch(EventsThunk.getEvents());
   }, [dispatch]);
