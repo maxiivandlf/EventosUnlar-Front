@@ -26,7 +26,7 @@ function Map() {
       >
         <img src='/logo.svg' alt='' style={{ width: 30 }} />
         <Typography variant='h6' component={'p'} color={'#f3f3f3'}>
-          Lugares de intereses de la Universidad Nacional de La Rioja
+          Lugares de interés de la Universidad Nacional de La Rioja
         </Typography>
       </Box>
       <MapView width={'100%'} />

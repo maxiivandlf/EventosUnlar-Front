@@ -132,22 +132,6 @@ function FormCreateEvent() {
                 </FormHelperText>
               )}
             </FormControl>
-            {/* <TextField
-              id='type'
-              label='Tipo de evento'
-              name='type'
-              type=''
-              variant='outlined'
-              fullWidth
-              error={errors.type ? true : false}
-              helperText={errors.type?.message}
-              {...register('type', {
-                required: {
-                  value: true,
-                  message: 'El tipo de evento es requerido',
-                },
-              })}
-            /> */}
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <TextField
@@ -252,7 +236,7 @@ function FormCreateEvent() {
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <TextField
               id='description'
-              label='Descripcion del evento'
+              label='Descripción del evento'
               name='description'
               variant='outlined'
               error={errors.description ? true : false}
@@ -263,15 +247,15 @@ function FormCreateEvent() {
               {...register('description', {
                 required: {
                   value: true,
-                  message: 'La descripcion es requerida',
+                  message: 'La descripción es requerida',
                 },
                 maxLength: {
                   value: 200,
-                  message: 'La descripcion debe tener menos de 200 caracteres',
+                  message: 'La descripción debe tener menos de 200 caracteres',
                 },
                 minLength: {
                   value: 10,
-                  message: 'La descripcion debe tener mas de 10 caracteres',
+                  message: 'La descripción debe tener mas de 10 caracteres',
                 },
               })}
             />
@@ -325,7 +309,7 @@ function FormCreateEvent() {
 
         {formStatus === 'error' && errors.length !== 0 && (
           <Alert severity='error'>
-            A ocurrido un Error, intente nuevamente
+            Ha ocurrido un Error, intente nuevamente
           </Alert>
         )}
         {formStatus === 'success' && isSubmitted && (
